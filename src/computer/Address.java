@@ -1,6 +1,6 @@
 package computer;
 
-public class Address {
+public class Address implements Operand {
 	private int address;
 	
 	public Address(int address) {
@@ -13,5 +13,10 @@ public class Address {
 	
 	public String toString() {
 		return "[" + this.address + "]";
+	}
+
+	@Override
+	public Word word(Memory memory) {
+		return memory.read(this);
 	}
 }

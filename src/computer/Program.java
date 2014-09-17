@@ -1,8 +1,7 @@
 package computer;
 
 public abstract class Program extends java.util.ArrayList<Instruction> {
-	public void run(Memory memory) {
-		ProgramCounter pC = new ProgramCounter();
+	public void run(Memory memory, ProgramCounter pC) {
 		while(pC.next() >= 0) {
 			this.get(pC.current()).execute(memory, pC);
 		}

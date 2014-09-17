@@ -1,7 +1,7 @@
 package computer;
 
-public interface Word extends Comparable<Word> {
-	public void add(Word word);
+public interface Word extends Comparable<Word>, Operand {
+	public Word add(Word word);
 	
-	public void mul(Word word);
+	public Word mul(Word word);
 }

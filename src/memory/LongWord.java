@@ -1,5 +1,6 @@
 package memory;
 
+import computer.Memory;
 import computer.Word;
 
 public class LongWord implements Word {
@@ -10,13 +11,15 @@ public class LongWord implements Word {
 	}
 	
 	@Override
-	public void add(Word word) {
+	public Word add(Word word) {
 		this.value += ((LongWord)word).value;
+		return this;
 	}
 
 	@Override
-	public void mul(Word word) {
+	public Word mul(Word word) {
 		this.value *= ((LongWord)word).value;
+		return this;
 	}
 	
 	public String toString() {
@@ -26,5 +29,10 @@ public class LongWord implements Word {
 	@Override
 	public int compareTo(Word o) {
 		return Long.compare(this.value, ((LongWord)o).value);
+	}
+
+	@Override
+	public Word word(Memory memory) {
+		return this;
 	}
 }

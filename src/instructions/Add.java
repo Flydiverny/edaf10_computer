@@ -1,30 +1,23 @@
 package instructions;
 
 import computer.Address;
-import computer.Instruction;
-import computer.Memory;
-import computer.ProgramCounter;
+import computer.Operand;
 import computer.Word;
 
-public class Add implements Instruction {
-	
-	private Address dest, add;
-	private Word val;
-	
-	public Add(Address dest, Word val, Address add) {
-		this.dest = dest;
-		this.add = add;
-		this.val = val;
+public class Add extends ArithmeticInstruction {
+
+	public Add(Operand v1, Operand v2, Address dest) {
+		super(v1, v2, dest);
 	}
 
 	@Override
-	public void execute(Memory memory, ProgramCounter programCounter) {
-		Word value = memory.read(add);
-		value.add(val);
-		memory.put(value, dest);
+	protected Word op(Word op1, Word op2) {
+		op1.add(op2);
+		return op1;
 	}
-	
-	public String toString() {
-		return "ADD " + dest + " " + val + " " + add;
+
+	@Override
+	protected String code() {
+		return "ADD";
 	}
 }

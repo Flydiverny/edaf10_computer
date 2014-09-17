@@ -1,32 +1,24 @@
 package instructions;
 
 import computer.Address;
-import computer.Instruction;
-import computer.Memory;
-import computer.ProgramCounter;
+import computer.Operand;
 import computer.Word;
 
-public class Mul implements Instruction {
-	
-	private Address dest, x, y;
-	
-	public Mul(Address dest, Address x, Address y) {
-		this.dest = dest;
-		this.x = x;
-		this.y = y;
+public class Mul extends ArithmeticInstruction{
+
+	public Mul(Operand v1, Operand v2, Address dest) {
+		super(v1, v2, dest);
 	}
-	
+
 	@Override
-	public void execute(Memory memory, ProgramCounter programCounter) {
-		Word xw = memory.read(x);
-		Word xy = memory.read(y);
-		xy.mul(xw);
-		
-		memory.put(xy, dest);
+	protected Word op(Word op1, Word op2) {
+		op1.mul(op2);
+		return op1;
 	}
-	
-	public String toString() {
-		return "MUL " + dest + " " + x + " " + y;
+
+	@Override
+	protected String code() {
+		return "MUL";
 	}
 
 }

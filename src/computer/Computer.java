@@ -13,6 +13,7 @@ public class Computer {
 	}
 	
 	public void run() {
-		this.program.run(memory);
+		ProgramCounter pC = new ProgramCounter();
+		this.program.run(memory, pC);
 	}
 }
