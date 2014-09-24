@@ -14,6 +14,9 @@ public class Computer {
 	
 	public void run() {
 		ProgramCounter pC = new ProgramCounter();
-		this.program.run(memory, pC);
+
+		while(pC.next() >= 0) {
+			this.program.get(pC.current()).execute(this.memory, pC);
+		}
 	}
 }
